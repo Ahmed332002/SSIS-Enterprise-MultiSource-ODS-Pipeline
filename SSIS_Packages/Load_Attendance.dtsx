@@ -1,0 +1,1506 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/20/2026 2:12:42 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-E28UIED"
+  DTS:CreatorName="DESKTOP-E28UIED\ahmed"
+  DTS:DTSID="{868E829A-7CD7-4FD3-8B32-76DA2F36948C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{63B256D3-1DB3-4D0A-A7FC-172B808B3C89}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BFD6E05C-588A-4D1F-8CD4-8287FA314214}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExecutionLogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{55E641AC-5FFA-4113-B8DF-C82657656A1B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastLoadDate">
+      <DTS:VariableValue
+        DTS:DataType="7">2/20/2026 2:17:16 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4EA10FE7-6E1C-4188-BACC-99EEA879A002}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsExtracted">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract to Staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{c3bf2580-7724-40bf-9162-da23d284fbf8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract to Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract to Staging\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract to Staging\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract to Staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Output].Columns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Output].Columns[LoadDate]"
+                      name="LoadDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]"
+                      name="SourceSystem"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,50,1256)"SourceDB_Sales"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,50,1256)"SourceDB_Sales"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract to Staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract to Staging\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [int].[Employees]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [int].[Employees]) [refTable]
+where [refTable].[SourceEmployeeID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="EmployeeKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SourceEmployeeID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EmployeeCode" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="FirstName" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="LastName" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="FullName" dataType="DT_STR" length="101" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="Email" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="Phone" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="HireDate" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="JobTitle" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="DepartmentKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ManagerID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Salary" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="CommissionPct" dataType="DT_NUMERIC" length="0" precision="5" scale="2" codePage="0"/&gt;&lt;referenceColumn name="IsActive" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TerminationDate" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SourceSystem" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1256"/&gt;&lt;referenceColumn name="SourceCreatedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SourceModifiedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ODSCreatedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ODSModifiedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IsDeleted" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmployeeID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract to Staging\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{7ECE5587-3B49-40C8-B1B0-65096CFE7CCF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.ODS_Enterprise]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract to Staging\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract to Staging\Lookup.Inputs[Lookup Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmployeeID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SourceEmployeeID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract to Staging\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Extract to Staging\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract to Staging\Lookup.Outputs[Lookup Match Output].Columns[EmployeeKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Extract to Staging\Lookup.Outputs[Lookup Match Output].Columns[EmployeeKey]"
+                      name="EmployeeKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">EmployeeKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract to Staging\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Extract to Staging\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract to Staging\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Extract to Staging\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract to Staging\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract to Staging\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[EmployeeAttendance]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract to Staging\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{7ECE5587-3B49-40C8-B1B0-65096CFE7CCF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.ODS_Enterprise]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoadDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LoadDate"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadDate]"
+                      lineageId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Output].Columns[LoadDate]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreatedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CreatedDate"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceCreatedDate]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDate]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceSystem]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SourceSystem"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      lineageId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Output].Columns[SourceSystem]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AttendanceID]"
+                      cachedDataType="i4"
+                      cachedName="AttendanceID"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AttendanceID]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceID]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AttendanceDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="AttendanceDate"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AttendanceDate]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceDate]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CheckInTime]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="CheckInTime"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CheckInTime]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckInTime]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CheckOutTime]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="CheckOutTime"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CheckOutTime]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckOutTime]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WorkHours]"
+                      cachedDataType="numeric"
+                      cachedName="WorkHours"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WorkHours]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WorkHours]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AttendanceStatus]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="AttendanceStatus"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AttendanceStatus]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceStatus]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Remarks]"
+                      cachedCodepage="1256"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Remarks"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Remarks]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Remarks]" />
+                    <inputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EmployeeKey]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeKey"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeKey]"
+                      lineageId="Package\Extract to Staging\Lookup.Outputs[Lookup Match Output].Columns[EmployeeKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StagingID]"
+                      dataType="i4"
+                      name="StagingID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceCreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="SourceCreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadDate]"
+                      dataType="dbTimeStamp"
+                      name="LoadDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystem]"
+                      codePage="1256"
+                      dataType="str"
+                      length="50"
+                      name="SourceSystem" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AttendanceID]"
+                      dataType="i4"
+                      name="AttendanceID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AttendanceDate]"
+                      dataType="wstr"
+                      length="10"
+                      name="AttendanceDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CheckInTime]"
+                      dataType="wstr"
+                      length="16"
+                      name="CheckInTime" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CheckOutTime]"
+                      dataType="wstr"
+                      length="16"
+                      name="CheckOutTime" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WorkHours]"
+                      dataType="numeric"
+                      name="WorkHours"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AttendanceStatus]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="AttendanceStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Remarks]"
+                      codePage="1256"
+                      dataType="str"
+                      length="200"
+                      name="Remarks" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeKey]"
+                      dataType="i4"
+                      name="EmployeeKey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract to Staging\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM dbo.EmployeeAttendance WHERE CreatedDate &gt; ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{55E641AC-5FFA-4113-B8DF-C82657656A1B};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract to Staging\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{6B2CCEC0-6446-4E24-A577-761F2AA41A2D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.SourceDB_HR]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CreatedDate]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AttendanceID]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceID]"
+                      name="AttendanceID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AttendanceDate]"
+                      length="10"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceDate]"
+                      name="AttendanceDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckInTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CheckInTime]"
+                      length="16"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckInTime]"
+                      name="CheckInTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckOutTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CheckOutTime]"
+                      length="16"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CheckOutTime]"
+                      name="CheckOutTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WorkHours]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WorkHours]"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WorkHours]"
+                      name="WorkHours"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceStatus]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AttendanceStatus]"
+                      length="20"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[AttendanceStatus]"
+                      name="AttendanceStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Remarks]"
+                      codePage="1256"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Remarks]"
+                      length="200"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Remarks]"
+                      name="Remarks"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AttendanceID]"
+                      dataType="i4"
+                      name="AttendanceID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AttendanceDate]"
+                      dataType="wstr"
+                      length="10"
+                      name="AttendanceDate" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CheckInTime]"
+                      dataType="wstr"
+                      length="16"
+                      name="CheckInTime" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CheckOutTime]"
+                      dataType="wstr"
+                      length="16"
+                      name="CheckOutTime" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WorkHours]"
+                      dataType="numeric"
+                      name="WorkHours"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AttendanceStatus]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      name="AttendanceStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Remarks]"
+                      codePage="1256"
+                      dataType="str"
+                      length="200"
+                      name="Remarks" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AttendanceID]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AttendanceID]"
+                      name="AttendanceID" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AttendanceDate]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AttendanceDate]"
+                      name="AttendanceDate" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CheckInTime]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CheckInTime]"
+                      name="CheckInTime" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CheckOutTime]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CheckOutTime]"
+                      name="CheckOutTime" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WorkHours]"
+                      dataType="numeric"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WorkHours]"
+                      name="WorkHours"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AttendanceStatus]"
+                      codePage="1256"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AttendanceStatus]"
+                      name="AttendanceStatus" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Remarks]"
+                      codePage="1256"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Remarks]"
+                      name="Remarks" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CreatedDate]"
+                      name="CreatedDate" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract to Staging\Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowsExtracted</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Extract to Staging\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract to Staging\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Extract to Staging\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract to Staging.Paths[Derived Column Output]"
+              endId="Package\Extract to Staging\Lookup.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Extract to Staging\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract to Staging.Paths[Lookup Match Output]"
+              endId="Package\Extract to Staging\Row Count.Inputs[Row Count Input 1]"
+              name="Lookup Match Output"
+              startId="Package\Extract to Staging\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract to Staging.Paths[OLE DB Source Output]"
+              endId="Package\Extract to Staging\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Extract to Staging\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Extract to Staging.Paths[Row Count Output 1]"
+              endId="Package\Extract to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\Extract to Staging\Row Count.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Last Load Date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f838aaa5-7594-4b41-8a13-dd75480e0336}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Last Load Date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7ECE5587-3B49-40C8-B1B0-65096CFE7CCF}"
+          SQLTask:SqlStatementSource="SELECT ISNULL(LastSuccessfulLoadDate, '1900-01-01') FROM meta.TableLoadControl &#xA;WHERE TargetTableName = 'stg.EmployeeAttendance'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::LastLoadDate" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Merge to Integration"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{70e679a3-48bf-4fee-b135-e758f3f221ff}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Merge to Integration"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7ECE5587-3B49-40C8-B1B0-65096CFE7CCF}"
+          SQLTask:SqlStatementSource="&#xA;UPDATE tgt&#xA;SET tgt.CheckInTime = src.CheckInTime,&#xA;    tgt.CheckOutTime = src.CheckOutTime,&#xA;    tgt.WorkHours = src.WorkHours,     &#xA;    tgt.AttendanceStatus = src.AttendanceStatus, &#xA;    tgt.Remarks = src.Remarks,     &#xA;    tgt.EmployeeKey = src.EmployeeKey,&#xA;    tgt.ODSModifiedDate = GETDATE()&#xA;FROM int.EmployeeAttendance tgt&#xA;JOIN stg.EmployeeAttendance src ON tgt.SourceAttendanceID = src.AttendanceID;&#xA;&#xA;&#xA;INSERT INTO int.EmployeeAttendance (&#xA;    SourceAttendanceID, &#xA;    EmployeeKey, &#xA;    AttendanceDate, &#xA;    CheckInTime, &#xA;    CheckOutTime, &#xA;    WorkHours,&#xA;    AttendanceStatus, &#xA;    Remarks,&#xA;    SourceSystem, &#xA;    SourceCreatedDate, &#xA;    ODSCreatedDate&#xA;)&#xA;SELECT &#xA;    src.AttendanceID, &#xA;    src.EmployeeKey, &#xA;    src.AttendanceDate, &#xA;    src.CheckInTime, &#xA;    src.CheckOutTime, &#xA;    src.WorkHours,&#xA;    src.AttendanceStatus,&#xA;    src.Remarks,&#xA;    'SourceDB_HR',      &#xA;    src.SourceCreatedDate, &#xA;    GETDATE()&#xA;FROM stg.EmployeeAttendance src&#xA;WHERE NOT EXISTS (&#xA;    SELECT 1 FROM int.EmployeeAttendance tgt &#xA;    WHERE tgt.SourceAttendanceID = src.AttendanceID&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Log"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{548da0eb-692d-4a2c-b428-21c3e64e1a12}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Start Log.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{6ede9178-091b-49c1-af08-d2c9d59bfcfb}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{095423bf-3623-4e7c-85c5-b58c53c59934}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7ECE5587-3B49-40C8-B1B0-65096CFE7CCF}"
+          SQLTask:SqlStatementSource="INSERT INTO meta.ETL_ExecutionLog (PackageName, ExecutionStartTime, ExecutionStatus)&#xA;VALUES (?, GETDATE(), 'Running');&#xA;SELECT CAST(SCOPE_IDENTITY() AS INT);"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::ExecutionLogID" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Success Log"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a54b7dfd-e38c-4b7a-8c3b-cc3a6faa480f}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Success Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7ECE5587-3B49-40C8-B1B0-65096CFE7CCF}"
+          SQLTask:SqlStatementSource="UPDATE meta.ETL_ExecutionLog&#xA;SET ExecutionEndTime = GETDATE(),&#xA;    ExecutionStatus = 'Success',&#xA;    RowsExtracted = ?,&#xA;    RowsLoaded = ?&#xA;WHERE ExecutionLogID = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::RowsExtracted"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::RowsExtracted"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::ExecutionLogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d9cc83c4-a6b3-4556-9cde-241da4a02fa5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7ECE5587-3B49-40C8-B1B0-65096CFE7CCF}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE stg.EmployeeAttendance" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Control Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{269c645e-b712-498f-aa00-9d13d983ca55}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Control Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7ECE5587-3B49-40C8-B1B0-65096CFE7CCF}"
+          SQLTask:SqlStatementSource="UPDATE meta.TableLoadControl &#xA;SET LastSuccessfulLoadDate = GETDATE() &#xA;WHERE TargetTableName = 'stg.EmployeeAttendance'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1ac3c1ab-4518-45d7-9d79-17e8c7f29d3d}"
+      DTS:From="Package\Get Last Load Date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Truncate Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{cac174f3-61c1-4c18-93ea-042cd9e6ca24}"
+      DTS:From="Package\Truncate Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Extract to Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{d7c88955-d59b-47ec-8b3e-585ede2411b3}"
+      DTS:From="Package\Extract to Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Merge to Integration" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{67652d7a-64f5-4f03-a318-5a2935d5a2c9}"
+      DTS:From="Package\Merge to Integration"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update Control Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{4f7cf2f7-7f1c-4f10-812d-d41ee8ff4ccd}"
+      DTS:From="Package\Update Control Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Success Log" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{042fd0b9-6166-47e6-b67d-6fff5d0a17cd}"
+      DTS:From="Package\Start Log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Get Last Load Date" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Extract to Staging"
+          TopLeft="403.730159461871,270.549019423289" />
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\Get Last Load Date"
+          TopLeft="414.36508011943,139.614379015182" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Merge to Integration"
+          TopLeft="495.079366005535,339.202614134353" />
+        <NodeLayout
+          Size="121.6,41.6"
+          Id="Package\Start Log"
+          TopLeft="405.476191211619,60" />
+        <NodeLayout
+          Size="135.2,41.6"
+          Id="Package\Success Log"
+          TopLeft="60,342.771241582206" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\Truncate Staging"
+          TopLeft="412.619048369681,199.686274387364" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Update Control Table"
+          TopLeft="274.047619503271,339.882352695849" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="583.16508011943,160.414379015182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12.1460317497487,60.0718953721813"
+              Start="0,0"
+              End="-4.64603174974866,60.0718953721813">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,56.0718953721813" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,56.0718953721813"
+                    Point2="22.5,60.0718953721813"
+                    Point3="18.5,60.0718953721813" />
+                  <mssgle:LineSegment
+                    End="-4.64603174974866,60.0718953721813" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="488.374603915776,241.286274387364">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.2627450359252"
+              Start="0,0"
+              End="0,21.7627450359252">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.7627450359252" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="484.930159461871,312.149019423289">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98.149206543664,27.053594711064"
+              Start="0,0"
+              End="98.149206543664,19.553594711064">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.52679735553198" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.52679735553198"
+                    Point2="0,13.526797355532"
+                    Point3="4,13.526797355532" />
+                  <mssgle:LineSegment
+                    End="94.149206543664,13.526797355532" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94.149206543664,13.526797355532"
+                    Point2="98.149206543664,13.526797355532"
+                    Point3="98.149206543664,17.526797355532" />
+                  <mssgle:LineSegment
+                    End="98.149206543664,19.553594711064" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="495.079366005535,360.342483415101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-42.631746502264,0"
+              Start="0,0"
+              End="-35.131746502264,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-35.131746502264,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="274.047619503271,362.126797139027">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-78.8476195032703,0"
+              Start="0,0"
+              End="-71.3476195032703,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-71.3476195032703,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="466.276191211619,101.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32.4888889078111,38.0143790151822"
+              Start="0,0"
+              End="32.4888889078111,30.5143790151822">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0071895075911" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0071895075911"
+                    Point2="0,19.0071895075911"
+                    Point3="4,19.0071895075911" />
+                  <mssgle:LineSegment
+                    End="28.4888889078111,19.0071895075911" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.4888889078111,19.0071895075911"
+                    Point2="32.4888889078111,19.0071895075911"
+                    Point3="32.4888889078111,23.0071895075911" />
+                  <mssgle:LineSegment
+                    End="32.4888889078111,30.5143790151822" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract to Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Extract to Staging\OLE DB Source"
+          TopLeft="345.714286450221,39.7647058474976" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Extract to Staging\Derived Column"
+          TopLeft="348.571429313445,110.882352843984" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Extract to Staging\Row Count"
+          TopLeft="349.285715029252,260.7999997721" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Extract to Staging\OLE DB Destination"
+          TopLeft="354.285715039895,337.270587940364" />
+        <EdgeLayout
+          Id="Package\Extract to Staging.Paths[Row Count Output 1]"
+          TopLeft="414.085715029252,302.3999997721">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.4000000106437,34.8705881682645"
+              Start="0,0"
+              End="25.4000000106437,27.3705881682645">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.4352940841323" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.4352940841323"
+                    Point2="0,17.4352940841323"
+                    Point3="4,17.4352940841323" />
+                  <mssgle:LineSegment
+                    End="21.4000000106437,17.4352940841323" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.4000000106437,17.4352940841323"
+                    Point2="25.4000000106437,17.4352940841323"
+                    Point3="25.4000000106437,21.4352940841323" />
+                  <mssgle:LineSegment
+                    End="25.4000000106437,27.3705881682645" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract to Staging.Paths[OLE DB Source Output]"
+          TopLeft="422.742857881833,81.3647058474976">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.5176469964864"
+              Start="0,0"
+              End="0,22.0176469964864">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0176469964864" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Extract to Staging\Lookup"
+          TopLeft="351.428572176671,191.176470420662" />
+        <EdgeLayout
+          Id="Package\Extract to Staging.Paths[Derived Column Output]"
+          TopLeft="424.971429313445,152.482352843984">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.1428571367748,38.6941175766777"
+              Start="0,0"
+              End="-17.1428571367748,31.1941175766777">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.3470587883389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.3470587883389"
+                    Point2="0,19.3470587883389"
+                    Point3="-4,19.3470587883389" />
+                  <mssgle:LineSegment
+                    End="-13.1428571367748,19.3470587883389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.1428571367748,19.3470587883389"
+                    Point2="-17.1428571367748,19.3470587883389"
+                    Point3="-17.1428571367748,23.3470587883389" />
+                  <mssgle:LineSegment
+                    End="-17.1428571367748,31.1941175766777" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract to Staging.Paths[Lookup Match Output]"
+          TopLeft="410.957143602961,232.776470420662">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.0235293514385"
+              Start="0,0"
+              End="0,20.5235293514385">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5235293514385" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,4.45707717571926,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract to Staging\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract to Staging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract to Staging\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[int].[Employees]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
